@@ -1,7 +1,34 @@
 # マルチスレッド
 複数の処理を同時に実行させることで処理を高速化することができます。
-スクレイピングなどで処理速度を上げたい場合に有効です。
-参考：https://qiita.com/__init__/items/74b36eba31ccbc0364ed
+スクレイピングなどで処理速度を上げたい場合に有効です。<br>
+<br>
+マルチスレッドサンプル<br>
+```
+import threading
+import time
+
+def thread_target(keyword: str, num: int):
+    '''
+    マルチスレッドで呼び出される関数
+    '''
+    print(num, keyword)
+    
+
+def thread_main():
+    '''
+    マルチスレッドを実行する
+    '''
+    keywords = ["test1", "test2", "test3"]
+    for i, keyword in enumerate(keywords):
+        # targetにマルチスレッドで実行したい関数を指定する
+        # argsに辞書でtargetで指定した関数の引数を配列かタプルで指定する
+        t = threading.Thread(target=thread_target, 
+                             args=(keyword, i+1))
+        t.start()
+
+if __name__ == "__main__":
+    thread_main()
+```
 
 ## １　threadingモジュールを使用して、複数の処理を同時に実行してみよう
 スレッド１でfor文を大量に回している状態でも、スレッド２は別の処理、print文などが実行できるとを確認してみよう\n
