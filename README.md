@@ -12,6 +12,9 @@ def thread_target(keyword: str, num: int):
     マルチスレッドで呼び出される関数
     '''
     print(num, keyword)
+    # マルチスレッド処理をわかりやすくするためにwaitを入れる
+    time.sleep(10)
+    print(num, "fin")
     
 
 def thread_main():
